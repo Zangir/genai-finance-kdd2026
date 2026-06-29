@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generative AI &amp; LLMs for Financial Markets — KDD 2026 Tutorial</title>
+<meta name="description" content="A KDD 2026 lecture-style tutorial on generative AI and large language models for financial markets: behavioral prediction, grounded LLM systems, and autonomous trading. Jeju Island, August 2026." />
+<meta name="author" content="Zangir Iklassov, Hachem Madmoun, Jean-Jacques Duhot, Salem Lahlou" />
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Generative AI &amp; LLMs for Financial Markets — KDD 2026 Tutorial" />
+<meta property="og:description" content="From behavioral prediction to autonomous trading. A 3-hour KDD 2026 lecture-style tutorial." />
+<meta property="og:image" content="assets/og-image.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__brand" aria-label="Home">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="26" height="26" fill="none">
+          <rect x="4" y="14" width="4" height="14" rx="1" fill="currentColor" opacity="0.55"/>
+          <rect x="13" y="8" width="4" height="20" rx="1" fill="currentColor" opacity="0.8"/>
+          <rect x="22" y="4" width="4" height="24" rx="1" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="nav__title">GenAI&nbsp;·&nbsp;Finance</span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="#overview">Overview</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#audience">Audience</a>
+      <a href="#resources">Resources</a>
+      <a href="#cite">Cite</a>
+    </nav>
+
+    <a href="#resources" class="nav__cta btn btn--small">Materials</a>
+
+    <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__glow" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <div class="hero__badge reveal">
+      <span class="dot"></span>
+      ACM SIGKDD 2026 · Lecture-Style Tutorial
+    </div>
+
+    <h1 class="hero__title reveal">
+      Generative AI &amp; Large Language Models<br />
+      for <span class="grad">Financial Markets</span>
+    </h1>
+
+    <p class="hero__subtitle reveal">
+      From Behavioral Prediction to Autonomous Trading
+    </p>
+
+    <p class="hero__lede reveal">
+      A three-hour journey through the parts of generative AI that actually
+      survive contact with markets — behavioral foundations, grounded LLM
+      systems, and responsible deployment.
+    </p>
+
+    <div class="hero__authors reveal">
+      <span>Zangir Iklassov</span>
+      <span>Hachem Madmoun</span>
+      <span>Jean-Jacques Duhot</span>
+      <span>Salem Lahlou</span>
+    </div>
+
+    <div class="hero__meta reveal">
+      <div class="hero__meta-item">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        August 9–13, 2026
+      </div>
+      <div class="hero__meta-item">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Jeju Island, Republic of Korea
+      </div>
+      <div class="hero__meta-item">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        3 hours · half day
+      </div>
+    </div>
+
+    <div class="hero__actions reveal">
+      <a href="#schedule" class="btn btn--primary">Explore the schedule</a>
+      <a href="#resources" class="btn btn--ghost">Notebooks &amp; demos</a>
+    </div>
+  </div>
+
+  <a href="#overview" class="hero__scroll" aria-label="Scroll to content">
+    <span></span>
+  </a>
+</section>
+
+<!-- ===================== STATS STRIP ===================== -->
+<section class="strip">
+  <div class="strip__inner">
+    <div class="strip__item reveal"><div class="strip__num">3</div><div class="strip__label">Hours, three acts</div></div>
+    <div class="strip__item reveal"><div class="strip__num">2</div><div class="strip__label">Live demonstrations</div></div>
+    <div class="strip__item reveal"><div class="strip__num">3</div><div class="strip__label">Colab notebooks</div></div>
+    <div class="strip__item reveal"><div class="strip__num">4</div><div class="strip__label">Tutors across research &amp; industry</div></div>
+  </div>
+</section>
+
+<!-- ===================== OVERVIEW ===================== -->
+<section class="section" id="overview">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__num">01</span>
+      <h2 class="section__title">A different view of finance &amp; AI</h2>
+    </div>
+
+    <div class="overview">
+      <div class="overview__lead reveal">
+        <p>
+          Financial markets are one of the few machine-learning settings where
+          feedback is fast, mistakes are expensive, and deployment is constrained
+          by execution and regulation. Yet most existing tutorials still treat
+          finance either as an NLP benchmark or as a classical forecasting problem.
+        </p>
+        <p>
+          This tutorial takes a different view. We show how recent progress in
+          generative AI becomes genuinely useful in markets when it helps model
+          participant behavior, ground reasoning in live documents and order-flow
+          data, and support research and execution workflows that can survive
+          contact with production.
+        </p>
+      </div>
+
+      <div class="pillars">
+        <article class="pillar reveal">
+          <div class="pillar__index">I</div>
+          <h3>Behavioral &amp; Market Foundations</h3>
+          <p>Market microstructure, order-flow information, and the behavioral patterns that make participant modeling more decision-relevant than univariate price prediction.</p>
+        </article>
+        <article class="pillar reveal">
+          <div class="pillar__index">II</div>
+          <h3>Grounded LLM Systems</h3>
+          <p>Retrieval-augmented generation, critique models, and agentic workflows — with hallucination control framed as evidence alignment, not prompt engineering.</p>
+        </article>
+        <article class="pillar reveal">
+          <div class="pillar__index">III</div>
+          <h3>Responsible Deployment</h3>
+          <p>Leakage-aware backtesting, execution and risk realities, and the governance questions that arise once these systems leave the lab.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SCHEDULE ===================== -->
+<section class="section section--alt" id="schedule">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__num">02</span>
+      <h2 class="section__title">Tutorial schedule</h2>
+      <p class="section__sub">A research-to-deployment progression. Timings include two live demonstrations and short Q&amp;A — total 180 minutes.</p>
+    </div>
+
+    <div class="timeline">
+
+      <!-- PART 1 -->
+      <div class="part reveal">
+        <div class="part__header">
+          <div class="part__tag">Part 1</div>
+          <h3 class="part__title">Foundations</h3>
+          <div class="part__dur">60 min</div>
+        </div>
+        <p class="part__desc">What is being modeled, and which data sources carry behavioral information.</p>
+        <ul class="segments">
+          <li class="segment">
+            <div class="segment__time">15′</div>
+            <div class="segment__body">
+              <h4>Framing markets as behavioral systems</h4>
+              <p>Why modeling how participants process and react to information is often more decision-relevant than treating price as an isolated target.</p>
+              <span class="segment__by">Iklassov</span>
+            </div>
+          </li>
+          <li class="segment">
+            <div class="segment__time">35′</div>
+            <div class="segment__body">
+              <h4>Market microstructure &amp; behavioral patterns</h4>
+              <p>Bid–ask dynamics, adverse selection, order-flow toxicity, price impact, order-book modeling, behavioral biases, and major stress events.</p>
+              <span class="segment__by">Madmoun</span>
+              <span class="tag tag--demo">Live demo · LOBSTER order-book visualizer</span>
+            </div>
+          </li>
+          <li class="segment">
+            <div class="segment__time">10′</div>
+            <div class="segment__body">
+              <h4>Bridge to financial LLMs</h4>
+              <p>From early disclosure-based text analysis to timely, grounded, uncertainty-aware extraction from earnings calls, filings, tables, and charts.</p>
+              <span class="segment__by">Lahlou</span>
+            </div>
+          </li>
+        </ul>
+        <div class="part__note"><span class="tag tag--lab">Optional Colab</span> FinBERT fine-tuning for held-out earnings events.</div>
+      </div>
+
+      <!-- PART 2 -->
+      <div class="part reveal">
+        <div class="part__header">
+          <div class="part__tag">Part 2</div>
+          <h3 class="part__title">Advanced Techniques</h3>
+          <div class="part__dur">60 min</div>
+        </div>
+        <p class="part__desc">From individual signals to systems that ground, compare, and act on them.</p>
+        <ul class="segments">
+          <li class="segment">
+            <div class="segment__time">25′</div>
+            <div class="segment__body">
+              <h4>Retrieval-augmented generation for market intelligence</h4>
+              <p>Long-context architectures, retrieval, self-reflective RAG, factuality, calibration, and uncertainty — auditable at inference time.</p>
+              <span class="segment__by">Lahlou</span>
+              <span class="tag tag--demo">Live demo · end-to-end RAG on an earnings call</span>
+            </div>
+          </li>
+          <li class="segment">
+            <div class="segment__time">20′</div>
+            <div class="segment__body">
+              <h4>Agentic AI for autonomous trading</h4>
+              <p>How research automation, monitoring, and decision support change once models can plan, use tools, keep memory, critique, and update hypotheses.</p>
+              <span class="segment__by">Iklassov</span>
+            </div>
+          </li>
+          <li class="segment">
+            <div class="segment__time">15′</div>
+            <div class="segment__body">
+              <h4>Multi-agent collaboration &amp; conflict resolution</h4>
+              <p>Disagreement between agents treated as measurable evidence about uncertainty, model diversity, or regime change — with human-in-the-loop escalation as a design feature.</p>
+              <span class="segment__by">Iklassov &amp; Lahlou</span>
+            </div>
+          </li>
+        </ul>
+        <div class="part__note"><span class="tag tag--lab">Optional Colab</span> A conflict-resolution protocol under simulated regime change.</div>
+      </div>
+
+      <!-- PART 3 -->
+      <div class="part reveal">
+        <div class="part__header">
+          <div class="part__tag">Part 3</div>
+          <h3 class="part__title">Robustness &amp; Ethics</h3>
+          <div class="part__dur">60 min</div>
+        </div>
+        <p class="part__desc">Which ideas survive realistic validation, execution constraints, and governance.</p>
+        <ul class="segments">
+          <li class="segment">
+            <div class="segment__time">25′</div>
+            <div class="segment__body">
+              <h4>Rigorous backtesting</h4>
+              <p>Look-ahead bias, survivorship bias, selection effects, and cross-sectional contamination — with purged cross-validation, embargo periods, and multiple-testing corrections.</p>
+              <span class="segment__by">Madmoun</span>
+            </div>
+          </li>
+          <li class="segment">
+            <div class="segment__time">10′</div>
+            <div class="segment__body">
+              <h4>Risk management &amp; execution realities</h4>
+              <p>Why spread, market impact, funding liquidity, queue position, volatility targeting, and drawdown controls must be designed in from the start.</p>
+              <span class="segment__by">Madmoun</span>
+            </div>
+          </li>
+          <li class="segment">
+            <div class="segment__time">25′</div>
+            <div class="segment__body">
+              <h4>Moderated ethics &amp; governance discussion</h4>
+              <p>Three disagreements that arise precisely when systems are useful: predation vs. discovery, systemic fragility, and transparency vs. competitive advantage.</p>
+              <span class="segment__by">All presenters</span>
+            </div>
+          </li>
+        </ul>
+        <div class="part__note"><span class="tag tag--lab">Optional Colab</span> Diagnose and repair a deliberately flawed backtest.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SPEAKERS ===================== -->
+<section class="section" id="speakers">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__num">03</span>
+      <h2 class="section__title">Tutors</h2>
+      <p class="section__sub">Researchers working on reasoning, uncertainty, and agentic AI, together with practitioners rooted in systematic trading.</p>
+    </div>
+
+    <div class="speakers">
+      <article class="speaker reveal">
+        <div class="speaker__top">
+          <div class="speaker__avatar">ZI</div>
+          <div>
+            <h3 class="speaker__name">Zangir Iklassov</h3>
+            <p class="speaker__role">Assistant Teaching Professor &amp; Research Scientist, MBZUAI</p>
+            <span class="speaker__pill">In-person · Corresponding tutor</span>
+          </div>
+        </div>
+        <p class="speaker__bio">Works on reinforcement learning for combinatorial optimization, LLM reasoning, and agentic AI for sequential decision making and hypothesis-driven discovery. Leads the behavior-first framing, agent design, and multi-agent coordination modules.</p>
+      </article>
+
+      <article class="speaker reveal">
+        <div class="speaker__top">
+          <div class="speaker__avatar">SL</div>
+          <div>
+            <h3 class="speaker__name">Salem Lahlou</h3>
+            <p class="speaker__role">Assistant Professor of Machine Learning, MBZUAI</p>
+            <span class="speaker__pill">In-person</span>
+          </div>
+        </div>
+        <p class="speaker__bio">Research spans uncertainty quantification, interactive and sample-efficient RL, generative models (GFlowNets), and language-model reasoning. Leads the financial NLP, RAG, prompt design, and confidence-aware evaluation sections.</p>
+      </article>
+
+      <article class="speaker reveal">
+        <div class="speaker__top">
+          <div class="speaker__avatar">HM</div>
+          <div>
+            <h3 class="speaker__name">Hachem Madmoun</h3>
+            <p class="speaker__role">AI Researcher, MBZUAI · Lecturer, Imperial College Business School</p>
+            <span class="speaker__pill">In-person</span>
+          </div>
+        </div>
+        <p class="speaker__bio">Works at the interface of AI research and systematic asset management, with production experience in regime detection and equity selection. Leads market microstructure, backtesting, execution, and risk.</p>
+      </article>
+
+      <article class="speaker reveal">
+        <div class="speaker__top">
+          <div class="speaker__avatar">JD</div>
+          <div>
+            <h3 class="speaker__name">Jean-Jacques Duhot</h3>
+            <p class="speaker__role">Senior Portfolio Manager, Brevan Howard Asset Management LLP</p>
+            <span class="speaker__pill speaker__pill--alt">Contributor</span>
+          </div>
+        </div>
+        <p class="speaker__bio">Decades of institutional experience across discretionary and systematic investing in commodities and cross-asset macro. Strengthens the governance and ethics material: correlated AI behavior, disclosure vs. advantage, and escalation when systems fail.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AUDIENCE ===================== -->
+<section class="section section--alt" id="audience">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__num">04</span>
+      <h2 class="section__title">Who it's for &amp; what you'll learn</h2>
+    </div>
+
+    <div class="audience">
+      <div class="audience__col reveal">
+        <h3 class="audience__h">Designed for</h3>
+        <ul class="ticks">
+          <li>Machine-learning researchers seeking an application domain with measurable consequences</li>
+          <li>Quantitative researchers updating their toolkits for the generative-AI era</li>
+          <li>Practitioners and policy researchers needing a realistic view of these systems in markets</li>
+        </ul>
+
+        <h3 class="audience__h">Prerequisites</h3>
+        <p class="audience__p">Supervised learning, neural networks, optimization, and working Python (PyTorch, scikit-learn, pandas), plus basic familiarity with liquid markets and buy/sell orders. <strong>No prior LLM or quantitative-finance background is required.</strong></p>
+      </div>
+
+      <div class="audience__col reveal">
+        <h3 class="audience__h">By the end, participants can</h3>
+        <ul class="ticks">
+          <li>Reason about behavior-first signal design</li>
+          <li>Build and critique RAG and multi-agent pipelines for market intelligence</li>
+          <li>Evaluate them with leakage-aware backtesting</li>
+          <li>Discuss the execution, governance, and ethical questions that arise once these systems leave the lab</li>
+        </ul>
+
+        <div class="callout">
+          <h4>Societal impact, treated as design</h4>
+          <p>Market stability, fairness, compliance, and accountability are framed as design constraints — model diversity, stress testing, kill-switch logic, and human oversight — situated within the EU AI Act, MiFID II, ESMA guidance, and evolving SEC expectations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESOURCES ===================== -->
+<section class="section" id="resources">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__num">05</span>
+      <h2 class="section__title">Materials &amp; resources</h2>
+      <p class="section__sub">Slides and notebooks will be released here ahead of the session. Demos ship with cached outputs so discussion stays on modeling, not latency.</p>
+    </div>
+
+    <div class="resources">
+      <a class="resource resource--soon reveal">
+        <div class="resource__icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/></svg>
+        </div>
+        <h3>Slide deck</h3>
+        <p>The full lecture deck for all three parts.</p>
+        <span class="resource__status">Coming soon</span>
+      </a>
+
+      <a class="resource resource--soon reveal">
+        <div class="resource__icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+        </div>
+        <h3>Notebook · FinBERT</h3>
+        <p>Fine-tuning FinBERT on earnings transcripts.</p>
+        <span class="resource__status">Coming soon</span>
+      </a>
+
+      <a class="resource resource--soon reveal">
+        <div class="resource__icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M6 8v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8M12 14v2"/></svg>
+        </div>
+        <h3>Notebook · Multi-agent</h3>
+        <p>Conflict resolution between agents under regime change.</p>
+        <span class="resource__status">Coming soon</span>
+      </a>
+
+      <a class="resource resource--soon reveal">
+        <div class="resource__icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+        </div>
+        <h3>Notebook · Backtest repair</h3>
+        <p>Diagnose and repair a deliberately flawed backtest.</p>
+        <span class="resource__status">Coming soon</span>
+      </a>
+    </div>
+
+    <div class="demos reveal">
+      <div class="demos__item">
+        <span class="tag tag--demo">Live demo</span>
+        <h4>LOB visualizer on LOBSTER data</h4>
+        <p>Makes imbalance, impact, and behavioral signatures visible on real limit-order-book data.</p>
+      </div>
+      <div class="demos__item">
+        <span class="tag tag--demo">Live demo</span>
+        <h4>End-to-end RAG on an earnings call</h4>
+        <p>Turns retrieval and table extraction into a confidence-scored trading signal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CITE ===================== -->
+<section class="section section--alt" id="cite">
+  <div class="container container--narrow">
+    <div class="section__head reveal">
+      <span class="section__num">06</span>
+      <h2 class="section__title">Cite this tutorial</h2>
+    </div>
+
+    <div class="cite reveal">
+      <button class="cite__copy" id="copyBibtex" aria-label="Copy BibTeX">Copy</button>
+      <pre class="cite__code"><code id="bibtex">@inproceedings{iklassov2026genaifinance,
+  author    = {Iklassov, Zangir and Madmoun, Hachem and
+               Duhot, Jean-Jacques and Lahlou, Salem},
+  title     = {Generative AI and Large Language Models for Financial
+               Markets: From Behavioral Prediction to Autonomous Trading},
+  booktitle = {Proceedings of the 32nd ACM SIGKDD Conference on Knowledge
+               Discovery and Data Mining V.2 (KDD '26)},
+  year      = {2026},
+  publisher = {Association for Computing Machinery},
+  address   = {Jeju Island, Republic of Korea},
+  doi       = {10.1145/3770855.3816459}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ACKNOWLEDGEMENT ===================== -->
+<section class="ack" id="ack">
+  <div class="ack__glow" aria-hidden="true"></div>
+  <div class="container container--narrow">
+    <div class="ack__inner reveal">
+      <span class="ack__eyebrow">With gratitude</span>
+      <h2 class="ack__title">A special thank-you to <span class="grad">Professor Martin Takáč</span></h2>
+      <p class="ack__text">
+        We are deeply grateful to <strong>Professor Martin Takáč</strong> of the
+        Mohamed bin Zayed University of Artificial Intelligence (MBZUAI) for his
+        guidance, support, and encouragement, which were instrumental in shaping
+        this tutorial. His mentorship made this work possible.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="22" height="22" fill="none">
+          <rect x="4" y="14" width="4" height="14" rx="1" fill="currentColor" opacity="0.55"/>
+          <rect x="13" y="8" width="4" height="20" rx="1" fill="currentColor" opacity="0.8"/>
+          <rect x="22" y="4" width="4" height="24" rx="1" fill="currentColor"/>
+        </svg>
+      </span>
+      <div>
+        <p class="footer__title">Generative AI &amp; LLMs for Financial Markets</p>
+        <p class="footer__meta">KDD 2026 · The 32nd ACM SIGKDD Conference · Jeju Island, Republic of Korea</p>
+      </div>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="#overview">Overview</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </div>
+  <div class="container footer__bottom">
+    <p>© <span id="year">2026</span> The tutorial authors. Hosted for the KDD 2026 community.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
