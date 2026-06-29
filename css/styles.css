@@ -244,6 +244,13 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
 .part__note { margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line-2); color: var(--muted); font-size: 0.95rem; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
 /* ----------------------------- speakers ----------------------------- */
+.group-label {
+  font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin: 0 0 24px; display: flex; align-items: center; gap: 14px;
+}
+.group-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.group-label--spaced { margin-top: 60px; }
+.group-note { color: var(--muted); font-size: 0.96rem; max-width: 640px; margin: -10px 0 26px; }
 .speakers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .speaker {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
@@ -325,15 +332,6 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
 .cite__copy.is-copied { color: #1a1206; background: var(--gold); border-color: var(--gold); }
 .cite__code { padding: 26px 24px; overflow-x: auto; }
 .cite__code code { font-family: var(--mono); font-size: 0.84rem; line-height: 1.75; color: var(--muted); white-space: pre; }
-
-/* ----------------------------- acknowledgement ----------------------------- */
-.ack { position: relative; padding: clamp(80px, 11vw, 150px) 0; text-align: center; overflow: hidden; border-top: 1px solid var(--line); }
-.ack__glow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(240,180,41,0.13), transparent 65%); pointer-events: none; }
-.ack__inner { position: relative; z-index: 2; }
-.ack__eyebrow { font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
-.ack__title { font-size: clamp(1.8rem, 4.4vw, 3rem); margin-top: 20px; }
-.ack__text { max-width: 640px; margin: 26px auto 0; color: var(--muted); font-size: 1.12rem; line-height: 1.75; }
-.ack__text strong { color: var(--text); }
 
 /* ----------------------------- footer ----------------------------- */
 .footer { background: var(--ink-2); border-top: 1px solid var(--line); padding-top: 56px; }
