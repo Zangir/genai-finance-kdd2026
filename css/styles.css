@@ -248,19 +248,33 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
 .speaker {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 32px; transition: transform .35s var(--ease), border-color .35s, background .35s;
+  display: flex; flex-direction: column;
 }
 .speaker:hover { transform: translateY(-5px); border-color: var(--line-2); background: var(--surface-2); }
-.speaker__top { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 18px; }
-.speaker__avatar {
-  flex-shrink: 0; width: 58px; height: 58px; border-radius: 14px;
-  display: grid; place-items: center; font-family: var(--serif); font-weight: 600; font-size: 1.25rem;
-  color: var(--gold); background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.25);
+.speaker__top { display: flex; gap: 18px; align-items: center; margin-bottom: 18px; }
+.speaker__photo {
+  flex-shrink: 0; width: 86px; height: 86px; border-radius: 16px; object-fit: cover; object-position: center top;
+  border: 1px solid var(--line-2); background: var(--surface-2);
 }
+.speaker__photo--mono {
+  display: grid; place-items: center; font-family: var(--serif); font-weight: 600; font-size: 1.7rem;
+  color: var(--gold); background: rgba(240,180,41,0.08); border-color: rgba(240,180,41,0.25);
+  object-fit: initial;
+}
+.speaker__head { min-width: 0; }
 .speaker__name { font-size: 1.3rem; }
 .speaker__role { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
 .speaker__pill { display: inline-block; margin-top: 10px; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.02em; color: var(--azure); background: rgba(90,162,255,0.1); border: 1px solid rgba(90,162,255,0.28); padding: 4px 11px; border-radius: 100px; }
 .speaker__pill--alt { color: var(--muted); background: rgba(255,255,255,0.04); border-color: var(--line-2); }
-.speaker__bio { color: var(--muted); font-size: 0.98rem; }
+.speaker__bio { color: var(--muted); font-size: 0.98rem; flex-grow: 1; }
+.speaker__links { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+.slink {
+  width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
+  color: var(--muted); background: rgba(255,255,255,0.03); border: 1px solid var(--line);
+  transition: color .2s, background .2s, border-color .2s, transform .2s;
+}
+.slink svg { width: 18px; height: 18px; }
+.slink:hover { color: var(--gold); background: rgba(240,180,41,0.1); border-color: rgba(240,180,41,0.35); transform: translateY(-2px); }
 
 /* ----------------------------- audience ----------------------------- */
 .audience { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
