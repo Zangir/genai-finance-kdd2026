@@ -333,6 +333,31 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
 .cite__code { padding: 26px 24px; overflow-x: auto; }
 .cite__code code { font-family: var(--mono); font-size: 0.84rem; line-height: 1.75; color: var(--muted); white-space: pre; }
 
+/* ----------------------------- presentation ----------------------------- */
+.pres {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px 26px; transition: transform .35s var(--ease), border-color .35s, background .35s;
+}
+.pres:hover { transform: translateY(-4px); border-color: var(--line-2); background: var(--surface-2); }
+.pres__icon {
+  flex-shrink: 0; width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center;
+  color: var(--gold); background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.22);
+}
+.pres__body { flex-grow: 1; min-width: 0; }
+.pres__body h3 { font-family: var(--sans); font-weight: 700; font-size: 1.12rem; }
+.pres__body p { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
+.pres__badge {
+  flex-shrink: 0; font-family: var(--mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--gold-soft); background: rgba(240,180,41,0.1);
+  border: 1px solid rgba(240,180,41,0.3); padding: 7px 13px; border-radius: 100px; white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .pres { flex-wrap: wrap; }
+  .pres__body { flex-basis: calc(100% - 74px); }
+  .pres__badge { margin-left: 74px; }
+}
+
 /* ----------------------------- footer ----------------------------- */
 .footer { background: var(--ink-2); border-top: 1px solid var(--line); padding-top: 56px; }
 .footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; padding-bottom: 40px; }
